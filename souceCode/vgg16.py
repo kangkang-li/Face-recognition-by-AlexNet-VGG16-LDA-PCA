@@ -1,12 +1,11 @@
-########################################################################################
-# Davi Frossard, 2016                                                                  #
-# VGG16 implementation in TensorFlow                                                   #
-# Details:                                                                             #
-# http://www.cs.toronto.edu/~frossard/post/vgg16/                                      #
-#                                                                                      #
-# Model from https://gist.github.com/ksimonyan/211839e770f7b538e2d8#file-readme-md     #
-# Weights from Caffe converted using https://github.com/ethereon/caffe-tensorflow      #
-########################################################################################
+"""
+TensorFlow implementation of VGG-16
+http://www.cs.toronto.edu/~frossard/post/vgg16/                                      #
+ 
+Revised from work by Davi Frossard
+
+KangKang Li, May 2018
+"""
 
 import tensorflow as tf
 import numpy as np
@@ -245,12 +244,6 @@ class vgg16:
             self.fc3l = tf.nn.bias_add(tf.matmul(self.fc2, fc3w), fc3b)
             self.parameters += [fc3w, fc3b]
 
-    # def load_weights(self, weight_file, sess):
-    #     weights = np.load(weight_file)
-    #     keys = sorted(weights.keys())[:-1]
-    #     for i, k in enumerate(keys):
-    #         print (i, k, np.shape(weights[k]))
-    #         sess.run(self.parameters[i].assign(weights[k]))
 
 # if __name__ == '__main__':
 #     sess = tf.Session()

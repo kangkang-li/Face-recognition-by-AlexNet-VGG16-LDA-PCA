@@ -1,21 +1,12 @@
 """
-This is an TensorFLow implementation of AlexNet by Alex Krizhevsky at all 
+Tensorflow implementation of AlexNet
+AlexNet by Alex Krizhevsky at all
 (http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf)
 
-Following my blogpost at:
+Changed the last FC layer for fine-tune, revised from the work by kratzert
 https://kratzert.github.io/2017/02/24/finetuning-alexnet-with-tensorflow.html
 
-This script enables finetuning AlexNet on any given Dataset with any number of classes.
-The structure of this script is strongly inspired by the fast.ai Deep Learning
-class by Jeremy Howard and Rachel Thomas, especially their vgg16 finetuning
-script:  
-- https://github.com/fastai/courses/blob/master/deeplearning1/nbs/vgg16.py
-
-
-The pretrained weights can be downloaded here and should be placed in the same folder: 
-- http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/  
-
-@author: Frederik Kratzert (contact: f.kratzert(at)gmail.com)
+KangKang Li
 """
 
 import tensorflow as tf
@@ -77,12 +68,6 @@ class AlexNet(object):
     
     
   def load_initial_weights(self, session):
-    """
-    As the weights from http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/ come 
-    as a dict of lists (e.g. weights['conv1'] is a list) and not as dict of 
-    dicts (e.g. weights['conv1'] is a dict with keys 'weights' & 'biases') we
-    need a special load function
-    """
     
     # Load the weights into memory
     weights_dict = np.load(self.WEIGHTS_PATH, encoding = 'bytes').item()
@@ -117,9 +102,6 @@ Predefine all necessary layer for the AlexNet
 """ 
 def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name,
          padding='SAME', groups=1):
-  """
-  Adapted from: https://github.com/ethereon/caffe-tensorflow
-  """
   # Get number of input channels
   input_channels = int(x.get_shape()[-1])
   

@@ -1,21 +1,10 @@
 """
-This is an TensorFLow implementation of AlexNet by Alex Krizhevsky at all 
-(http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf)
+Tensorflow implementation of VGG-16
 
-Following my blogpost at:
+Changed the last FC layer for fine-tune, revised from the work by kratzert for AlexNet
 https://kratzert.github.io/2017/02/24/finetuning-alexnet-with-tensorflow.html
 
-This script enables finetuning AlexNet on any given Dataset with any number of classes.
-The structure of this script is strongly inspired by the fast.ai Deep Learning
-class by Jeremy Howard and Rachel Thomas, especially their vgg16 finetuning
-script:  
-- https://github.com/fastai/courses/blob/master/deeplearning1/nbs/vgg16.py
-
-
-The pretrained weights can be downloaded here and should be placed in the same folder: 
-- http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/  
-
-@author: Frederik Kratzert (contact: f.kratzert(at)gmail.com)
+KangKang Li
 """
 
 import tensorflow as tf

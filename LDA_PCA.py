@@ -18,8 +18,6 @@ from sklearn.neighbors import KNeighborsClassifier as kNN
 from souceCode import dataRead_1
 
 
-# print(__doc__)
-
 # Display progress logs on stdout
 # logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s')
 
@@ -34,7 +32,7 @@ def accuCalculator(a,b):
   return count/len(a)*100
 
 
-def faceRec(optionA,sizeTrainGroup,y_train,X_train, y_test,X_test):#option A: PCA/LDA, option B: knn/svm
+def faceRec(option,sizeTrainGroup,y_train,X_train, y_test,X_test):#option: PCA/LDA, classifier using knn & svm
   # Download the data, if not already on disk and load it as numpy arrays
 
   # lfw_people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)
@@ -102,7 +100,7 @@ def faceRec(optionA,sizeTrainGroup,y_train,X_train, y_test,X_test):#option A: PC
   X_train_pca = pca.transform(X_train)
   X_test_pca = pca.transform(X_test)
   # print("done in %0.3fs" % (time() - t0))
-  if (optionA==0):
+  if (option==0):
     X_train_target=X_train_pca
     X_test_target=X_test_pca
   else:
@@ -129,10 +127,8 @@ def faceRec(optionA,sizeTrainGroup,y_train,X_train, y_test,X_test):#option A: PC
 
 # -----------------------knn------------
   knnClf = kNN(n_neighbors=1)
-  # knnClf.fit(X_train_pca, y_train)
   knnClf.fit(X_train_target, y_train)
   y_pred = knnClf.predict(X_test_target)
-  # print('knn')
   accu1=accuCalculator(y_pred,y_test)
   # print(accu)
   # print(classification_report(y_test, y_pred, target_names=target_names))
@@ -220,8 +216,8 @@ sizeArray=[10,20,30,40,50][:]
 for i in range(len(sizeArray)) :
   sizeTrainGroup=sizeArray[i]
   y_train,X_train, y_test,X_test = dataRead_1.trainTestSpliter(labelLib,labelGroupSizeS,faceLib,sizeTrainGroup)
-  for optionA in [0,1]:#PCA or LDA
-      result[optionA,:,i]=faceRec(optionA,sizeTrainGroup,y_train,X_train, y_test,X_test)
+  for option in [0,1]:#PCA or LDA
+      result[option,:,i]=faceRec(option,sizeTrainGroup,y_train,X_train, y_test,X_test)
 print('PCA-----kNN')
 print('   -----SVM')
 print('   -----SRC')

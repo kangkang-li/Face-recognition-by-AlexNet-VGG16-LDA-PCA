@@ -71,7 +71,7 @@ if __name__ == '__main__':
     # print(trainingX.shape)
     
         
-    from vgg16 import vgg16
+    from souceCode.vgg16 import vgg16
 
     #placeholder for input and dropout rate
     x = tf.placeholder(tf.float32, [size4eachClass*2, 224, 224, 3])
