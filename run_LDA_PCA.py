@@ -1,3 +1,9 @@
+"""
+Author: KangKang Li
+Classification of facial images as 2D matrix greyscale
+PCA and LDA were used for dimension-reduction, followed by classifiers of kNN and SVM
+"""
+
 from skmultilearn.problem_transform import BinaryRelevance
 # from __future__ import print_function
 from time import time
