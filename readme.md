@@ -26,6 +26,5 @@ described and introduced in the following paragraphs.
 * featureVerification-AlexNet.py:    fine-tune of AlexNet
 * featureVerification-VGG:           fine-tune of VGG-16*
 * LDA_PCA.py:                        classification by LDA and PCA
-* sourceCode including packages of AlexNet, Vgg-16, PCA. and LDA
-
-
+* sourceCode includes packages of AlexNet, Vgg-16, PCA. and LDA
+* report.pdf reports details of this project
